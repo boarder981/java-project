@@ -31,13 +31,14 @@ pipeline {
         sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
       }
     }
-    stage('Running on CentOS')
-    agent {
-      label 'CentOS'
-    }
-    steps {
-      sh "wget http://etienc5.mylabserver.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
-      sh "java -jar rectanble_${env.BUILD_NUMBER}.jar 3 4"
+    stage('Running on CentOS') {
+      agent {
+        label 'CentOS'
+      }
+      steps {
+        sh "wget http://etienc5.mylabserver.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
+        sh "java -jar rectanble_${env.BUILD_NUMBER}.jar 3 4"
+      }
     }
   }
 
